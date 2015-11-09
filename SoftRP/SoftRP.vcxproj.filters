@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{885b5aad-066b-49d8-a227-5ab6a7eff5e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Samplers">
+      <UniqueIdentifier>{a2a3d42d-74ff-44ae-aa58-f96093e4db82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shaders">
+      <UniqueIdentifier>{b0130e9a-14c6-415f-8bd6-e5e30f774800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shaders\VertexShaders">
+      <UniqueIdentifier>{1d3432f6-03fc-4fab-8dbc-733b5e7ad4a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shaders\PixelShaders">
+      <UniqueIdentifier>{0bd3e322-30f4-4d74-8fc0-35c1beba9f5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Rasterizers">
+      <UniqueIdentifier>{82660724-5489-4cda-9119-d0f849fc66a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Clippers">
+      <UniqueIdentifier>{76d8f5af-b5f1-4d23-ac02-8db76337b697}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rasterizers">
+      <UniqueIdentifier>{b31a0af8-ae86-442a-836b-34a4f7538a3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Clippers">
+      <UniqueIdentifier>{0a7cf269-c163-4606-8e3f-e977a27c9620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Allocators">
+      <UniqueIdentifier>{836289a2-9d6d-473f-9a20-f4e8bbdcaadf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Buffers">
+      <UniqueIdentifier>{f4dcf1e7-e806-4d14-aa2a-2f25d670e4bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Textures">
+      <UniqueIdentifier>{20d836eb-4efa-49f2-9338-bb5f1be03aff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MultiThreading">
+      <UniqueIdentifier>{950dc4f9-c3a7-45b7-a2b2-7e284aca6a52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Pipeline">
+      <UniqueIdentifier>{74c1b4bd-4141-4d66-96b1-39aef37e0931}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RenderTargets">
+      <UniqueIdentifier>{533202ca-ea47-49ac-9ffd-d137587150cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Vertices">
+      <UniqueIdentifier>{79c8cfdf-2fc1-4797-aeb8-d740eb44b9ae}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Vector.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftRP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SRMath.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftRPDefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexShader.h">
+      <Filter>Header Files\Shaders\VertexShaders</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexColorVertexShader.h">
+      <Filter>Header Files\Shaders\VertexShaders</Filter>
+    </ClInclude>
+    <ClInclude Include="TextCoordVertexShader.h">
+      <Filter>Header Files\Shaders\VertexShaders</Filter>
+    </ClInclude>
+    <ClInclude Include="SolidColorPixelShader.h">
+      <Filter>Header Files\Shaders\PixelShaders</Filter>
+    </ClInclude>
+    <ClInclude Include="TextCoordPixelShader.h">
+      <Filter>Header Files\Shaders\PixelShaders</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexColorPixelShader.h">
+      <Filter>Header Files\Shaders\PixelShaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelShader.h">
+      <Filter>Header Files\Shaders\PixelShaders</Filter>
+    </ClInclude>
+    <ClInclude Include="LinearSampler.h">
+      <Filter>Header Files\Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sampler.h">
+      <Filter>Header Files\Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="PointSampler.h">
+      <Filter>Header Files\Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="MipMapSampler.h">
+      <Filter>Header Files\Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="FVector.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="FMatrix.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="BinRasterizer.h">
+      <Filter>Header Files\Rasterizers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rasterizer.h">
+      <Filter>Header Files\Rasterizers</Filter>
+    </ClInclude>
+    <ClInclude Include="Clipper.h">
+      <Filter>Header Files\Clippers</Filter>
+    </ClInclude>
+    <ClInclude Include="SHClipper.h">
+      <Filter>Header Files\Clippers</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer.h">
+      <Filter>Header Files\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBuffer.h">
+      <Filter>Header Files\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>Header Files\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>Header Files\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Header Files\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskConsumer.h">
+      <Filter>Header Files\MultiThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadPool.h">
+      <Filter>Header Files\MultiThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTarget.h">
+      <Filter>Header Files\RenderTargets</Filter>
+    </ClInclude>
+    <ClInclude Include="PipelineState.h">
+      <Filter>Header Files\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Header Files\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureUnit.h">
+      <Filter>Header Files\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexLayout.h">
+      <Filter>Header Files\Vertices</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Header Files\Vertices</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewPort.h">
+      <Filter>Header Files\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="SIMDInclude.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MathCommon.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="FVectorImpl.inl">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderContext.h">
+      <Filter>Header Files\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PositionVertexShader.h">
+      <Filter>Header Files\Shaders\VertexShaders</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureRenderTarget.h">
+      <Filter>Header Files\RenderTargets</Filter>
+    </ClInclude>
+    <ClInclude Include="DepthBuffer.h">
+      <Filter>Header Files\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="ArrayAllocator.h">
+      <Filter>Header Files\Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="SimplePoolArrayAllocator.h">
+      <Filter>Header Files\Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="AlignedPoolArrayAllocator.h">
+      <Filter>Header Files\Allocators</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BinRasterizer.cpp">
+      <Filter>Source Files\Rasterizers</Filter>
+    </ClCompile>
+    <ClCompile Include="SHClipper.cpp">
+      <Filter>Source Files\Clippers</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FMatrixImpl.inl">
+      <Filter>Header Files\Math</Filter>
+    </None>
+    <None Include="VectorImpl.inl">
+      <Filter>Header Files\Math</Filter>
+    </None>
+    <None Include="VectorFun.inl">
+      <Filter>Header Files\Math</Filter>
+    </None>
+    <None Include="MatrixImpl.inl">
+      <Filter>Header Files\Math</Filter>
+    </None>
+    <None Include="MatrixFun.inl">
+      <Filter>Header Files\Math</Filter>
+    </None>
+    <None Include="ArrayAllocatorImpl.inl">
+      <Filter>Header Files\Allocators</Filter>
+    </None>
+    <None Include="SimplePoolArrayAllocatorImpl.inl">
+      <Filter>Header Files\Allocators</Filter>
+    </None>
+    <None Include="AlignedPoolArrayAllocatorImpl.inl">
+      <Filter>Header Files\Allocators</Filter>
+    </None>
+    <None Include="BufferImpl.inl">
+      <Filter>Header Files\Buffers</Filter>
+    </None>
+    <None Include="ConstantBufferImpl.inl">
+      <Filter>Header Files\Buffers</Filter>
+    </None>
+    <None Include="TaskConsumerImpl.inl">
+      <Filter>Header Files\MultiThreading</Filter>
+    </None>
+    <None Include="ThreadPoolImpl.inl">
+      <Filter>Header Files\MultiThreading</Filter>
+    </None>
+    <None Include="PipelineStateImpl.inl">
+      <Filter>Header Files\Pipeline</Filter>
+    </None>
+    <None Include="ViewPortImpl.inl">
+      <Filter>Header Files\Pipeline</Filter>
+    </None>
+    <None Include="RendererImpl.inl">
+      <Filter>Header Files\Pipeline</Filter>
+    </None>
+    <None Include="RasterizerImpl.inl">
+      <Filter>Header Files\Rasterizers</Filter>
+    </None>
+    <None Include="TextureRenderTargetImpl.inl">
+      <Filter>Header Files\RenderTargets</Filter>
+    </None>
+    <None Include="LinearSamplerImpl.inl">
+      <Filter>Header Files\Samplers</Filter>
+    </None>
+    <None Include="PointSamplerImpl.inl">
+      <Filter>Header Files\Samplers</Filter>
+    </None>
+    <None Include="MipMapSamplerImpl.inl">
+      <Filter>Header Files\Samplers</Filter>
+    </None>
+    <None Include="SamplerImpl.inl">
+      <Filter>Header Files\Samplers</Filter>
+    </None>
+    <None Include="PixelShaderImpl.inl">
+      <Filter>Header Files\Shaders\PixelShaders</Filter>
+    </None>
+    <None Include="SolidColorPixelShaderImpl.inl">
+      <Filter>Header Files\Shaders\PixelShaders</Filter>
+    </None>
+    <None Include="TextCoordPixelShaderImpl.inl">
+      <Filter>Header Files\Shaders\PixelShaders</Filter>
+    </None>
+    <None Include="VertexColorPixelShaderImpl.inl">
+      <Filter>Header Files\Shaders\PixelShaders</Filter>
+    </None>
+    <None Include="ShaderContextImpl.inl">
+      <Filter>Header Files\Shaders</Filter>
+    </None>
+    <None Include="PositionVertexShaderImpl.inl">
+      <Filter>Header Files\Shaders\VertexShaders</Filter>
+    </None>
+    <None Include="TextCoordVertexShaderImpl.inl">
+      <Filter>Header Files\Shaders\VertexShaders</Filter>
+    </None>
+    <None Include="VertexColorVertexShaderImpl.inl">
+      <Filter>Header Files\Shaders\VertexShaders</Filter>
+    </None>
+    <None Include="Texture2DImpl.inl">
+      <Filter>Header Files\Textures</Filter>
+    </None>
+    <None Include="TextureUnitImpl.inl">
+      <Filter>Header Files\Textures</Filter>
+    </None>
+    <None Include="VertexImpl.inl">
+      <Filter>Header Files\Vertices</Filter>
+    </None>
+    <None Include="VertexLayoutImpl.inl">
+      <Filter>Header Files\Vertices</Filter>
+    </None>
+    <None Include="ObjectPoolImpl.inl">
+      <Filter>Header Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

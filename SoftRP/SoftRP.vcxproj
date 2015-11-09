@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{36A8841D-0497-44A9-9BE7-DE5B6F1D67B4}</ProjectGuid>
+    <RootNamespace>SoftRP</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions); </PreprocessorDefinitions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <BrowseInformation>true</BrowseInformation>
+      <FloatingPointModel>Precise</FloatingPointModel>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="BinRasterizer.h" />
+    <ClInclude Include="MipMapSampler.h" />
+    <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="PointSampler.h" />
+    <ClInclude Include="Buffer.h" />
+    <ClInclude Include="Clipper.h" />
+    <ClInclude Include="MathCommon.h" />
+    <ClInclude Include="ConstantBuffer.h" />
+    <ClInclude Include="DepthBuffer.h" />
+    <ClInclude Include="FMatrix.h" />
+    <ClInclude Include="FVector.h" />
+    <ClInclude Include="FVectorImpl.inl" />
+    <ClInclude Include="IndexBuffer.h" />
+    <ClInclude Include="LinearSampler.h" />
+    <ClInclude Include="PipelineState.h" />
+    <ClInclude Include="AlignedPoolArrayAllocator.h" />
+    <ClInclude Include="SimplePoolArrayAllocator.h" />
+    <ClInclude Include="ArrayAllocator.h" />
+    <ClInclude Include="Sampler.h" />
+    <ClInclude Include="ShaderContext.h" />
+    <ClInclude Include="SIMDInclude.h" />
+    <ClInclude Include="PositionVertexShader.h" />
+    <ClInclude Include="SoftRPDefs.h" />
+    <ClInclude Include="SRMath.h" />
+    <ClInclude Include="PixelShader.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="RenderTarget.h" />
+    <ClInclude Include="TextureRenderTarget.h" />
+    <ClInclude Include="SoftRP.h" />
+    <ClInclude Include="SolidColorPixelShader.h" />
+    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Rasterizer.h" />
+    <ClInclude Include="TaskConsumer.h" />
+    <ClInclude Include="TextCoordPixelShader.h" />
+    <ClInclude Include="TextCoordVertexShader.h" />
+    <ClInclude Include="Texture2D.h" />
+    <ClInclude Include="SHClipper.h" />
+    <ClInclude Include="TextureUnit.h" />
+    <ClInclude Include="ThreadPool.h" />
+    <ClInclude Include="Vector.h" />
+    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="VertexBuffer.h" />
+    <ClInclude Include="VertexColorPixelShader.h" />
+    <ClInclude Include="VertexColorVertexShader.h" />
+    <ClInclude Include="VertexLayout.h" />
+    <ClInclude Include="VertexShader.h" />
+    <ClInclude Include="ViewPort.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BinRasterizer.cpp" />
+    <ClCompile Include="SHClipper.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BufferImpl.inl" />
+    <None Include="ConstantBufferImpl.inl" />
+    <None Include="FMatrixImpl.inl" />
+    <None Include="LinearSamplerImpl.inl" />
+    <None Include="MatrixFun.inl" />
+    <None Include="MatrixImpl.inl" />
+    <None Include="AlignedPoolArrayAllocatorImpl.inl" />
+    <None Include="ArrayAllocatorImpl.inl" />
+    <None Include="MipMapSamplerImpl.inl" />
+    <None Include="ObjectPoolImpl.inl" />
+    <None Include="PipelineStateImpl.inl" />
+    <None Include="PixelShaderImpl.inl" />
+    <None Include="PointSamplerImpl.inl" />
+    <None Include="PositionVertexShaderImpl.inl" />
+    <None Include="RasterizerImpl.inl" />
+    <None Include="RendererImpl.inl" />
+    <None Include="SamplerImpl.inl" />
+    <None Include="ShaderContextImpl.inl" />
+    <None Include="SolidColorPixelShaderImpl.inl" />
+    <None Include="TextCoordPixelShaderImpl.inl" />
+    <None Include="TextCoordVertexShaderImpl.inl" />
+    <None Include="Texture2DImpl.inl" />
+    <None Include="TextureRenderTargetImpl.inl" />
+    <None Include="SimplePoolArrayAllocatorImpl.inl" />
+    <None Include="TaskConsumerImpl.inl" />
+    <None Include="TextureUnitImpl.inl" />
+    <None Include="ThreadPoolImpl.inl" />
+    <None Include="VectorFun.inl" />
+    <None Include="VectorImpl.inl" />
+    <None Include="VertexColorPixelShaderImpl.inl" />
+    <None Include="VertexColorVertexShaderImpl.inl" />
+    <None Include="VertexImpl.inl" />
+    <None Include="VertexLayoutImpl.inl" />
+    <None Include="ViewPortImpl.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
