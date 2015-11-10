@@ -155,30 +155,23 @@ namespace WindowsDemo {
 	inline int WindowsDemo::SingleWindowApp<Derived>::run() {
 		MSG msg{};
 
-		try {
+		onStart();
 
-			onStart();
+		while (true) {
 
-			while (true) {
+			if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE)) {
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
 
-				if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE)) {
-					TranslateMessage(&msg);
-					DispatchMessage(&msg);
-
-					if (msg.message == WM_QUIT)
-						break;
-				} else if (!m_paused)
-					onUpdate();
-			}
-
-			onStop();
-
-		} catch (std::exception& e) {
-			MessageBox(0, (std::wstring{ L"An exception was thrown : " } +Utils::makeWideString(e.what())).c_str(), 0, 0);
-		} catch (...) {
-			MessageBox(0, L"An unknown exception was thrown!", 0, 0);
+				if (msg.message == WM_QUIT)
+					break;
+			} else if (!m_paused)
+				onUpdate();
+			else
+				Sleep(100);
 		}
 
+		onStop();
 		return static_cast<char>(msg.wParam);
 	}
 

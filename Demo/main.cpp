@@ -16,7 +16,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int nCmdShow) {
 		_CrtDumpMemoryLeaks();
 		return res;
 	} catch (std::exception& e) {
-		MessageBox(0, (std::wstring{ L"An exception was thrown : " } + Utils::makeWideString(e.what())).c_str(), 0, 0);
+		MessageBox(0, (std::wstring{ L"An exception was thrown : " } + WindowsDemo::Utils::makeWideString(e.what())).c_str(), 0, 0);
 	} catch (...) {
 		MessageBox(0, L"An unknown exception was thrown!", 0, 0);
 	}
