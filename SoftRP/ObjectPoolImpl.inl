@@ -21,7 +21,7 @@ namespace SoftRP {
 	template<typename T, typename C, typename A, typename Deact, typename Destr>
 	inline ObjectPool<T, C, A, Deact, Destr>::ObjectPool(ObjectPool&& objPool) {
 		std::lock_guard<std::mutex> lock{ objPool.m_mutex };
-		move(std::forward<ObjectPool>(objPool));
+		move(std::move(objPool));
 	}
 
 	template<typename T, typename C, typename A, typename Deact, typename Destr>
@@ -34,7 +34,7 @@ namespace SoftRP {
 		std::unique_lock<std::mutex> lock1{ m_mutex, std::defer_lock };
 		std::unique_lock<std::mutex> lock2{ objPool.m_mutex, std::defer_lock };
 		std::lock(lock1, lock2);
-		move(std::forward<ObjectPool>(objPool));		
+		move(std::move(objPool));		
 		return *this;
 	}
 
@@ -53,7 +53,7 @@ namespace SoftRP {
 #ifdef SOFTRP_MULTI_THREAD
 		std::lock_guard<std::mutex> lock{ m_mutex };
 #endif
-		return takeUnsafe(args...);
+		return takeUnsafe(std::forward<Args>(args)...);
 	}
 
 	template<typename T, typename C, typename A, typename Deact, typename Destr>
@@ -82,7 +82,7 @@ namespace SoftRP {
 	template<typename T, typename C, typename A, typename Deact, typename Destr>
 	template<typename... Args>
 	inline T ObjectPool<T, C, A, Deact, Destr>::takeOneAcquired(Args... args) {
-		return takeUnsafe(args...);
+		return takeUnsafe(std::forward<Args>(args)...);
 	}
 
 	template<typename T, typename C, typename A, typename Deact, typename Destr>

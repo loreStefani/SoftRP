@@ -10,7 +10,7 @@ namespace SoftRP {
 
 	inline TaskConsumer::TaskConsumer(TaskConsumer&& tc) {
 		std::lock_guard<std::mutex> lock{ tc.m_mtx };
-		move(std::forward<TaskConsumer>(tc));
+		move(std::move(tc));
 	}
 
 	inline TaskConsumer& TaskConsumer::operator=(TaskConsumer&& tc) {
@@ -20,7 +20,7 @@ namespace SoftRP {
 		std::unique_lock<std::mutex> thisLock{ m_mtx, std::defer_lock };
 		std::unique_lock<std::mutex> tcLock{ tc.m_mtx, std::defer_lock };
 		std::lock(thisLock, tcLock);
-		move(std::forward<TaskConsumer>(tc));
+		move(std::move(tc));
 
 		return *this;
 	}

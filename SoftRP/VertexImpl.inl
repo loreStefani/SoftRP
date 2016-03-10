@@ -22,11 +22,11 @@ namespace SoftRP {
 	}
 
 	inline Vertex::Vertex(Vertex&& v) {
-		move(std::forward<Vertex>(v));
+		move(std::move(v));
 	}
 
 	inline Vertex& Vertex::operator=(Vertex&& v) {
-		move(std::forward<Vertex>(v));
+		move(std::move(v));
 		return *this;
 	}
 

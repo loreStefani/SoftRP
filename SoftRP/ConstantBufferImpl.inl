@@ -37,7 +37,7 @@ namespace SoftRP {
 		return *this;
 	}
 
-	inline ConstantBuffer::ConstantBuffer(ConstantBuffer&& cBuff) : Buffer(std::forward<Buffer>(cBuff)) {
+	inline ConstantBuffer::ConstantBuffer(ConstantBuffer&& cBuff) : Buffer(std::move(cBuff)) {
 		m_offsets = std::move(cBuff.m_offsets);
 		m_instanceCount = cBuff.m_instanceCount;
 		m_perInstanceSize = cBuff.m_perInstanceSize;
@@ -46,7 +46,7 @@ namespace SoftRP {
 	inline ConstantBuffer& ConstantBuffer::operator=(ConstantBuffer&& cBuff) {
 		if (&cBuff == this)
 			return *this;
-		Buffer::operator=(std::forward<Buffer>(cBuff));
+		Buffer::operator=(std::move(cBuff));
 		m_offsets = std::move(cBuff.m_offsets);
 		m_instanceCount = cBuff.m_instanceCount;
 		m_perInstanceSize = cBuff.m_perInstanceSize;

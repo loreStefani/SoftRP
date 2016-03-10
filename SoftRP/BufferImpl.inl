@@ -41,12 +41,12 @@ namespace SoftRP {
 
 	template<typename T>
 	inline Buffer<T>::Buffer(Buffer&& buff) {
-		move(std::forward<Buffer>(buff));
+		move(std::move(buff));
 	}
 
 	template<typename T>
 	inline Buffer<T>& Buffer<T>::operator=(Buffer&& buff) {
-		move(std::forward<Buffer>(buff));
+		move(std::move(buff));
 		return *this;
 	}
 
