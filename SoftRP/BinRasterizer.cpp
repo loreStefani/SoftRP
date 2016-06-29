@@ -113,7 +113,7 @@ alpha, beta or gamma are >= 0 or > 0 depending on the nature of the respective e
 For instance: alpha > 0 && beta >= 0 && gamma >= 0 if the "alpha edge" is not Top-Left and the others are.
 Because alpha, beta and gamma are integers, the test (x > 0) is equivalent to (x >= 1) and so to (x-1>=0). 
 Substracting 1 to alpha, beta or gamma, if they refer to a not-Top-Left edge, allows to test 
-with >= 0 independently of the nature of the edge. To do this, a bias is calculated for alpha, beta e gamma that 
+with >= 0 independently of the nature of the edge. To do this, a bias is calculated for alpha, beta and gamma that 
 is added at the time of test.
 
 
@@ -475,8 +475,8 @@ void SoftRP::BinRasterizer::rasterizeBin(Bin& bin, const std::vector<Vertex>* ve
 						because A = alpha/(2*area), B = beta/(2*area) and C = gamma/(2*area), then:
 						let A1 = alpha/w0, B1 = beta/w1, C1 = gamma/w2
 
-						depth = [(A1*f0 + B1*f1 + C1*f2)/(2*area)] / [(A1 + B1 + C1) / (2*area)]
-						depth = (A1*f0 + B1*f1 + C1*f2) / (A1 + B1 + C1)
+						f = [(A1*f0 + B1*f1 + C1*f2)/(2*area)] / [(A1 + B1 + C1) / (2*area)]
+						f = (A1*f0 + B1*f1 + C1*f2) / (A1 + B1 + C1)
 						*/
 
 						const float alphaOnW0 = v0.invW * a[k];
@@ -662,7 +662,7 @@ void SoftRP::BinRasterizer::rasterizeBin(Bin& bin, const std::vector<Vertex>* ve
 						_mm_cmplt_epi32(xPositionsVec, widthBoundMask),
 						_mm_cmplt_epi32(yPositionsVec, heightBoundMask));
 
-				//since comp == 0 means success, then write pixel iff ((~comp == 0xFFFFFFFF) & boundMask ) == 0xFFFFFFFF
+				//since compInside == 0 means success, then write pixel iff ((~compInside == 0xFFFFFFFF) & boundMask ) == 0xFFFFFFFF
 				__m128i comp = _mm_andnot_si128(compInside, boundMask);
 
 				const __m128 a = fixedToFloat<4>(alpha);
