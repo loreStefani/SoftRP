@@ -102,6 +102,7 @@ namespace SoftRP {
 		__m128 val;
 		for (unsigned int i = 0; i < 4; i++)
 			val.m128_f32[i] = data[i];
+		return val;
 	}
 	
 	template<typename Iterator>
@@ -116,6 +117,7 @@ namespace SoftRP {
 			i++;
 			beg++;
 		}
+		return val;
 	}
 		
 	inline FVector createFV(const Math::Vector4& v) {
