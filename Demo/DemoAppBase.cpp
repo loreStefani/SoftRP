@@ -27,8 +27,8 @@ void DemoAppBase::onUpdate(){
 
 	if (m_millis >= std::chrono::milliseconds{ 1000 }) {
 		m_fpsString = std::to_wstring(m_frameCount);
-		m_frameCount = 1;
-		m_millis = std::chrono::milliseconds{ 0 };
+		m_frameCount = 0;
+		m_millis = m_millis - std::chrono::milliseconds{ 1000 };
 	}
 	SetWindowText(getWindowHandle(), 
 				  (delta_str + std::wstring{ L" ms, " } + m_fpsString + std::wstring{ L" FPS" } + m_messageString).c_str());
