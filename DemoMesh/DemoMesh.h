@@ -1,17 +1,19 @@
-#include "DemoAppBase.h"
+#pragma once
+#include <DemoAppBase.h>
 
-using namespace SoftRP;
-using namespace Math;
-using namespace WindowsDemo;
+namespace SoftRPDemo
+{
+	using namespace SoftRP;
+	using namespace Math;
 
-namespace SoftRPDemo {
-	class DemoApp : public DemoAppBase {
-
+	class DemoApp : public DemoAppBase
+	{
 	public:
 
 		explicit DemoApp(HINSTANCE hInstance, unsigned int width = defaultWindowSize(), unsigned int height = defaultWindowSize()) :
 			DemoAppBase(hInstance, width, height),
-			m_texture{ loadTexture("Resources/lambertian.jpg") } {
+			m_texture{ loadTexture("Resources/lambertian.jpg") }
+		{
 
 			Mesh m{ MeshFactory::createFromObj<true>(L"Resources/LeePerrySmith.obj") };
 
@@ -29,8 +31,8 @@ namespace SoftRPDemo {
 			m_renderer.setDepthBufferClearValue(1.0f);
 
 			m_texture.generateMipMaps();
-						
-			m_textureUnit0.setTexture(&m_texture);			
+
+			m_textureUnit0.setTexture(&m_texture);
 			m_textureUnit0.setMinificationSampler(&m_minSampler);
 			m_textureUnit0.setMagnificationSampler(&m_magSampler);
 
@@ -40,11 +42,12 @@ namespace SoftRPDemo {
 
 		virtual ~DemoApp() = default;
 
-		virtual void renderFrame(long long deltaTime) override {
+		virtual void renderFrame(long long deltaTime) override
+		{
 
 			m_renderer.clearRenderTarget();
 			m_renderer.clearDepthBuffer();
-			
+
 			*(m_constantBuffer0.getField(0).asMatrix4()) = m_camera.projView();
 
 			PipelineState pipelineState{ m_inputVertexLayout, m_vertexShader, m_outputVertexLayout, m_pixelShader };
@@ -55,7 +58,7 @@ namespace SoftRPDemo {
 			m_renderer.setDepthBuffer(&m_depthBuffer);
 			m_renderer.setRenderTarget(&m_renderTarget);
 			m_renderer.setViewPort(&m_viewPort);
-			
+
 			m_renderer.drawIndexed(m_indexCount);
 
 			m_renderer.wait();
