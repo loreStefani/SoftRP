@@ -197,3 +197,4 @@ FakesAssemblies/
 
 !/DemoMesh/Resources/*.obj
 *.db
+/SoftRP.VC.VC.opendb

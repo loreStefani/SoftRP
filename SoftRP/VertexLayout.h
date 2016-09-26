@@ -89,7 +89,7 @@ namespace SoftRP {
 	public:
 		
 		//ctor
-		AllocatorVertexLayout(const std::vector<size_t>& fieldsSizes);		
+		AllocatorVertexLayout(const std::vector<size_t>& fieldsSizes, size_t vertexAlignment);
 		
 		//dtor
 		virtual ~AllocatorVertexLayout() = default;

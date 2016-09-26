@@ -66,8 +66,8 @@ namespace SoftRP {
 	/*  AllocatorVertexLayout implementaion  */
 
 	template<template<typename T>typename A>
-	inline AllocatorVertexLayout<A>::AllocatorVertexLayout(const std::vector<size_t>& fieldsSizes)
-		: VertexLayout{ fieldsSizes }, m_allocator{ vertexStride() } {}
+	inline AllocatorVertexLayout<A>::AllocatorVertexLayout(const std::vector<size_t>& fieldsSizes, size_t vertexAlignment)
+		: VertexLayout{ fieldsSizes }, m_allocator{ vertexStride(), vertexAlignment } {}
 
 	template<template<typename T>typename A>
 	inline float* AllocatorVertexLayout<A>::allocateVertex() { return m_allocator.allocate(); }
@@ -84,7 +84,7 @@ namespace SoftRP {
 	/*  InputVertexLayout implementation  */
 
 	inline InputVertexLayout::InputVertexLayout(const std::vector<size_t>& fieldsSizes)
-		: AllocatorVertexLayout{ fieldsSizes } {}
+		: AllocatorVertexLayout{ fieldsSizes, 1 } {}
 
 	inline InputVertexLayout InputVertexLayout::create(const std::vector<size_t>& fieldsSizes) {
 		return InputVertexLayout{ fieldsSizes };
@@ -93,7 +93,7 @@ namespace SoftRP {
 	/*  OutputVertexLayout implementation  */
 
 	inline OutputVertexLayout::OutputVertexLayout(const std::vector<size_t>& fieldsSizes)
-		: AllocatorVertexLayout{ fieldsSizes } {}
+		: AllocatorVertexLayout{ fieldsSizes, 16 } {}
 
 	inline OutputVertexLayout OutputVertexLayout::create(const size_t fieldsCount) {
 		std::vector<size_t> vertexFields{};

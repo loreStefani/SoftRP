@@ -9,7 +9,10 @@ namespace SoftRP {
 
 	template<typename T, typename AllocationDesc, typename ArrayAllocationDesc>
 	inline ArrayAllocator<T, AllocationDesc, ArrayAllocationDesc>::
-		ArrayAllocator(size_t allocStride) : m_allocStride{ allocStride } {}
+		ArrayAllocator(size_t allocStride, size_t allocAlignment) 
+		: m_allocStride{ allocStride }, m_allocAlignment{ allocAlignment }
+	{
+	}
 
 	template<typename T, typename AllocationDesc, typename ArrayAllocationDesc>
 	inline ArrayAllocator<T, AllocationDesc, ArrayAllocationDesc>::
@@ -19,6 +22,7 @@ namespace SoftRP {
 		std::lock_guard<std::mutex> vaLock{ va.m_mutex };
 #endif			
 		m_allocStride = va.m_allocStride;
+		m_allocAlignment = va.m_allocAlignment;
 		m_allocations = std::move(va.m_allocations);
 		m_arrayAllocations = std::move(va.m_arrayAllocations);
 	}
@@ -44,6 +48,7 @@ namespace SoftRP {
 		std::lock(thisLock, vaLock);
 #endif	
 		m_allocStride = va.m_allocStride;
+		m_allocAlignment = va.m_allocAlignment;
 		m_allocations = std::move(va.m_allocations);
 		m_arrayAllocations = std::move(va.m_arrayAllocations);
 		return *this;
@@ -60,7 +65,7 @@ namespace SoftRP {
 			}
 		}
 
-		m_allocations.push_back(AllocationDesc{ m_allocStride });
+		m_allocations.push_back(AllocationDesc{ m_allocStride, m_allocAlignment });
 		return m_allocations.back().allocate();
 	}
 
@@ -85,7 +90,7 @@ namespace SoftRP {
 		if (it != m_arrayAllocations.end()) {
 			return it->second.allocate();
 		} else {
-			ArrayAllocationDesc arrayAllocDesc{ m_allocStride, count };
+			ArrayAllocationDesc arrayAllocDesc{ m_allocStride, count, m_allocAlignment };
 			T* ptr = arrayAllocDesc.allocate();
 			m_arrayAllocations.emplace(count, std::move(arrayAllocDesc));
 			return ptr;
@@ -108,10 +113,10 @@ namespace SoftRP {
 	/* PoolAllocDescBase implementation */
 
 	template<typename T, typename Allocator>
-	inline PoolAllocDescBase<T, Allocator>::PoolAllocDescBase(size_t allocStride) {
+	inline PoolAllocDescBase<T, Allocator>::PoolAllocDescBase(size_t allocStride, size_t allocAlignment) {
 		const size_t elementSize = allocStride*sizeof(T);
 		const size_t allocSize = BLOCK_SIZE*elementSize;
-		m_data = static_cast<T*>(m_allocator.allocate(allocSize, elementSize));
+		m_data = static_cast<T*>(m_allocator.allocate(allocSize, allocAlignment));
 		m_end = m_data + allocStride*BLOCK_SIZE;
 		m_allocStride = allocStride;
 	}
@@ -202,8 +207,11 @@ namespace SoftRP {
 	/* PoolArrayAllocDescBase implementation */
 
 	template<typename T, typename Allocator>
-	inline PoolArrayAllocDescBase<T, Allocator>::PoolArrayAllocDescBase(size_t allocStride, size_t count)
-		: m_elementSize{ allocStride*sizeof(T) }, m_allocSize{ count*m_elementSize } {}
+	inline PoolArrayAllocDescBase<T, Allocator>::PoolArrayAllocDescBase(size_t allocStride, size_t count, size_t allocAlignment)
+		: m_elementSize{ allocStride*sizeof(T) }, m_allocSize{ count*m_elementSize }, 
+		m_allocAlignment{ allocAlignment }
+	{
+	}
 
 	template<typename T, typename Allocator>
 	inline PoolArrayAllocDescBase<T, Allocator>::~PoolArrayAllocDescBase() {
@@ -217,7 +225,7 @@ namespace SoftRP {
 	inline T* PoolArrayAllocDescBase<T, Allocator>::allocate() {
 		T* ptr{ nullptr };
 		if (m_free.size() == 0)
-			ptr = static_cast<T*>(m_allocator.allocate(m_allocSize, m_elementSize));
+			ptr = static_cast<T*>(m_allocator.allocate(m_allocSize, m_allocAlignment));
 		else {
 			ptr = m_free.front();
 			m_free.pop_front();

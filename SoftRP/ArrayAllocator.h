@@ -20,7 +20,7 @@ namespace SoftRP {
 	public:
 
 		//ctor. constructs an ArrayAllocator which allocates arrays of size allocStride
-		ArrayAllocator(size_t allocStride);
+		ArrayAllocator(size_t allocStride, size_t allocAlignment);
 		//dtor
 		~ArrayAllocator();
 		//copy
@@ -41,6 +41,7 @@ namespace SoftRP {
 
 	private:
 		size_t m_allocStride;
+		size_t m_allocAlignment;
 		std::vector<AllocationDesc> m_allocations{};
 		std::map<size_t, ArrayAllocationDesc> m_arrayAllocations{};
 #ifdef SOFTRP_MULTI_THREAD
@@ -58,7 +59,7 @@ namespace SoftRP {
 	class PoolAllocDescBase {
 	public:
 		//ctor. constructs a PoolAllocDescBase which allocates arrays of size allocStride
-		PoolAllocDescBase(size_t allocStride);
+		PoolAllocDescBase(size_t allocStride, size_t allocAlignment);
 		//dtor
 		~PoolAllocDescBase();
 		//copy
@@ -100,7 +101,7 @@ namespace SoftRP {
 		ctor. constructs a PoolArrayAllocDescBase which allocates count-sized arrays of 
 		arrays of size allocStride
 		*/
-		PoolArrayAllocDescBase(size_t allocStride, size_t count);
+		PoolArrayAllocDescBase(size_t allocStride, size_t count, size_t allocAlignment);
 		//dtor
 		~PoolArrayAllocDescBase();
 		//copy
@@ -120,6 +121,7 @@ namespace SoftRP {
 	private:
 		size_t m_elementSize;
 		size_t m_allocSize;
+		size_t m_allocAlignment;
 		std::unordered_set<T*> m_allocated{};
 		std::deque<T*> m_free{};
 		Allocator m_allocator;
