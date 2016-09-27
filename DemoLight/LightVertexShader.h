@@ -40,8 +40,13 @@ namespace SoftRPDemo
 				for (unsigned int i = 0; i < 3; i++)
 					normal[i] = inputNormal[i];
 
-				float* textCoords = output->getField(3);
-				const float* inputTextCoords = input->getField(2);
+				float* tangent = output->getField(3);
+				const float* inputTangent = input->getField(2);
+				for (unsigned int i = 0; i < 3; i++)
+					tangent[i] = inputTangent[i];
+
+				float* textCoords = output->getField(4);
+				const float* inputTextCoords = input->getField(3);
 				for (unsigned int i = 0; i < 2; i++)
 					textCoords[i] = inputTextCoords[i];
 			}

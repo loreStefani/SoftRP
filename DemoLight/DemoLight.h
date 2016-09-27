@@ -14,21 +14,22 @@ namespace SoftRPDemo
 	public:
 
 		explicit DemoApp(HINSTANCE hInstance, unsigned int width = defaultWindowSize(), unsigned int height = defaultWindowSize()) :
-			DemoAppBase(hInstance, width, height), m_texture{ loadTexture("Resources/FloorsMarble0023_S.jpg") }
+			DemoAppBase(hInstance, width, height), m_texture{ loadTexture("Resources/FloorsMarble0023_S.jpg") },
+			m_normalMap{loadTexture("Resources/FloorsMarble0023_S_NRM.jpg")}
 		{
 
-			Mesh m{ MeshFactory::createSphere<true, true>(1.0f, 32, 32) };
+			Mesh m{ MeshFactory::createSphere<true, true, true>(1.0f, 64, 64) };
 
 			VertexBuffer* vertexBuffer;
 			IndexBuffer* indexBuffer;
 
-			m_inputVertexLayout = m.fillBuffers(&vertexBuffer, &indexBuffer); //position, normal, textCoord
+			m_inputVertexLayout = m.fillBuffers(&vertexBuffer, &indexBuffer); //position, normal, tangent, textCoord
 			m_vertexBuffer.reset(vertexBuffer);
 			m_indexBuffer.reset(indexBuffer);
 
 			m_indexCount = m.indexCount();
 
-			m_outputVertexLayout = OutputVertexLayout::create(3); //position, normal, textCoord
+			m_outputVertexLayout = OutputVertexLayout::create(4); //position, normal, tangent, textCoord
 
 			m_texture.generateMipMaps();
 
@@ -36,7 +37,14 @@ namespace SoftRPDemo
 			m_textureUnit0.setMinificationSampler(&m_sampler);
 			m_textureUnit0.setMagnificationSampler(&m_sampler);
 
+			m_normalMap.generateMipMaps();
+
+			m_textureUnit1.setTexture(&m_normalMap);
+			m_textureUnit1.setMinificationSampler(&m_sampler);
+			m_textureUnit1.setMagnificationSampler(&m_sampler);
+			
 			m_renderer.setTextureUnit(0, &m_textureUnit0);
+			m_renderer.setTextureUnit(1, &m_textureUnit1);
 
 			m_renderer.setRenderTargetClearValue(Math::Vector4{ 0.0f, 0.0f, 0.0f, 1.0f });
 			m_renderer.setDepthBufferClearValue(1.0f);
@@ -87,36 +95,41 @@ namespace SoftRPDemo
 
 		virtual void renderFrame(long long deltaTime) override
 		{
+			if (m_animateLight)
+			{				
+				m_currColorAnimPos += deltaTime;
+				m_currPosAnimPos += deltaTime;
 
-			m_currColorAnimPos += deltaTime;
-			m_currPosAnimPos += deltaTime;
-
-			if (m_currColorAnimPos > m_colorAnimTime)
-			{
-				m_currColorAnimPos = 0;
-				std::swap(m_startLightColor, m_endLightColor);
-			}
-
-			float t = static_cast<float>(m_currColorAnimPos) / (m_colorAnimTime);
-			m_lightColor = m_startLightColor;
-			m_lightColor.lerp(t, m_endLightColor);
-
-			if (m_currPosAnimPos >= m_rotationFrames[m_currRotationFrame + 1].timePos)
-			{
-				m_currRotationFrame++;
-				if (m_currRotationFrame == m_rotationFrames.size() - 1)
+				if (m_currColorAnimPos > m_colorAnimTime)
 				{
-					m_currRotationFrame = 0;
-					m_currPosAnimPos = 0;
+					m_currColorAnimPos = 0;
+					std::swap(m_startLightColor, m_endLightColor);
+				}
+
+				float t = static_cast<float>(m_currColorAnimPos) / (m_colorAnimTime);
+				m_lightColor = m_startLightColor;
+				m_lightColor.lerp(t, m_endLightColor);
+
+				if (m_currPosAnimPos >= m_rotationFrames[m_currRotationFrame + 1].timePos)
+				{
+					m_currRotationFrame++;
+					if (m_currRotationFrame == m_rotationFrames.size() - 1)
+					{
+						m_currRotationFrame = 0;
+						m_currPosAnimPos = 0;
+					}
 				}
 			}
+
 			AnimationFrame& animFrame1 = m_rotationFrames[m_currRotationFrame];
 			AnimationFrame& animFrame2 = m_rotationFrames[m_currRotationFrame + 1];
 
-			t = static_cast<float>(m_currPosAnimPos - animFrame1.timePos) / (animFrame2.timePos - animFrame1.timePos);
+			float t = static_cast<float>(m_currPosAnimPos - animFrame1.timePos) / (animFrame2.timePos - animFrame1.timePos);
 
 			Vector4 rot = slerpQuat(animFrame1.rotation, animFrame2.rotation, t);
 			Vector3 lightPosition = rotateByQuat(m_lightStartPosition, rot);
+
+
 
 			m_renderer.clearDepthBuffer();
 			m_renderer.clearRenderTarget();
@@ -164,6 +177,18 @@ namespace SoftRPDemo
 			m_renderer.wait();
 
 			m_renderTarget.present();
+		}
+
+		virtual bool onKeyUp(WPARAM keyCode)override
+		{
+			switch (keyCode)
+			{
+			case 0x30:
+				m_animateLight = !m_animateLight;
+				return true;
+			default:
+				return DemoAppBase::onKeyUp(keyCode);
+			}
 		}
 
 	private:
@@ -236,7 +261,11 @@ namespace SoftRPDemo
 		ConstantBuffer m_constantBuffer0{ std::vector<size_t>{16, 4, 3, 3} }; //projViewWorld, light color, view position, light position 
 		ConstantBuffer m_constantBuffer1{ std::vector<size_t>{16, 4} }; //projViewWorld, light color
 		TextureUnit m_textureUnit0{};
+		TextureUnit m_textureUnit1{};
 		Texture2D<Math::Vector4> m_texture;
+		Texture2D<Math::Vector4> m_normalMap;
 		OutputVertexLayout m_lightVertexLayout{ OutputVertexLayout::create(0) };
+
+		bool m_animateLight{ true };
 	};
 }
